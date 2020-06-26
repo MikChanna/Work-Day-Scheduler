@@ -2,6 +2,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   line-height: 1;
+  background-color: lightblue;
 }
 
 textarea {
@@ -63,17 +64,31 @@ textarea {
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
+  font-size: 24px;
 }
 
 .saveBtn i:hover {
-  font-size: 20px;
+  font-size: 30px;
   transition: all 0.3s ease-in-out;
 }
 
-.form {
+.hourOfDay {
   padding: 30px;
   border-style: solid;
-  border-color: blue;
   border-width: 2px;
-  background-color: lightblue;
+}
+.inputInfo {
+  border-style: solid;
+  border-width: 2px;
+  background-color: black;
+}
+
+#input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: black;
+  color: white;
 }
