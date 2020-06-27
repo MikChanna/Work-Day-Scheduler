@@ -61,6 +61,20 @@ $(document).ready(function () {
     save.append(saveButton);
     plannerRow.append(save);
   }
+  $("input").each(function () {
+    var timeNow = moment().hour();
+    var rowTime = $(this).attr("field-index");
+    console.log(timeNow);
+    if (rowTime < timeNow) {
+      $(this).css("background-color", "grey");
+    }
+    if (rowTime > timeNow) {
+      $(this).css("background-color", "green");
+    }
+    if (rowTime === timeNow) {
+      $(this).css("background-color", "blue");
+    }
+  });
 
   // event listener for save button click
   $(".saveBtn").on("click", function (event) {
@@ -72,21 +86,12 @@ $(document).ready(function () {
     localStorage.setItem("Task", JSON.stringify(storedPlans));
     storedPlans.push(plans);
     console.log(storedPlans);
-
-    renderPlans();
   });
 
   function initialize() {
     var lstoragePlans = JSON.parse(localStorage.getItem("plans"));
     if (lstoragePlans !== null) {
       storedPlans = lstoragePlans;
-    }
-  }
-  //function to get input from localStorage and add it to text
-  function renderPlans() {
-    var savedInput = localStorage.getItem("Task");
-    for (var i = 0; i < storedPlans.length; i++) {
-      var tasks = storedPlans[i];
     }
   }
 });
