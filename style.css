@@ -69,17 +69,14 @@ textarea {
 
 .saveBtn i:hover {
   font-size: 30px;
+  color: black;
   transition: all 0.3s ease-in-out;
 }
 
-.hourOfDay {
-  padding: 30px;
-  border-style: solid;
-  border-width: 2px;
-}
+/* .hourOfDay {
+  
+} */
 .inputInfo {
-  border-style: solid;
-  border-width: 2px;
   background-color: black;
 }
 
