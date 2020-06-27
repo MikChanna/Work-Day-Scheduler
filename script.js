@@ -3,6 +3,7 @@ $(document).ready(function () {
   var container = $(".container");
   var currentDay = $("#currentDay");
   var planInput = $("#input");
+  var storedPlans = [];
 
   // getting current day
   var now = moment().format("dddd, MMMM Do YYYY");
@@ -21,6 +22,20 @@ $(document).ready(function () {
     var addSpan = $("<span id = 'time'>").attr("hour-index", i);
     rowDiv.append(addSpan);
     plannerRow.append(rowDiv);
+
+    // format hours for display
+    let displayHour = 0;
+    let ampm = "";
+    if (i > 12) {
+      displayHour = i - 12;
+      ampm = "pm";
+    } else {
+      displayHour = i;
+      ampm = "am";
+    }
+
+    // populate timeBox with time
+    $("#time").text(displayHour + ampm);
 
     // create div for input area
     var inputarea = $("<div>").addClass("inputinfo col-md-6");
@@ -42,18 +57,16 @@ $(document).ready(function () {
     plannerRow.append(save);
   }
 
-  // var save = $(
-  //   "<div class = 'save col-md-3'><button class = 'saveBtn'>Save<i class='fa fa-calendar-plus-o'></i></button>"
-  // );
-  // $(".daily").append(rowDiv, input, save);
-
   // event listener for save button click
-  // $(".saveBtn").on("click", function () {
-  //   //function to save the input to localStorage
-  //   var plans = planInput.val();
-  //   localStorage.setItem("input", plans);
-  //   console.log(plans);
-  // });
+  $(".saveBtn").on("click", function () {
+    //function to save the input to localStorage
+    var saveIndex = $(this).attr("save-index");
+    var fieldIndex = $(this).siblings("field-index");
+
+    // var plans = fieldIndex.val();
+    // localStorage.setItem("input", plans);
+    console.log(fieldIndex);
+  });
 
   // //function to get input from localStorage and add it to text
   // function getInput() {
