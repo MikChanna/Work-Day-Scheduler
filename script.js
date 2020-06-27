@@ -2,7 +2,6 @@ $(document).ready(function () {
   // DOM Elements
   var container = $(".container");
   var currentDay = $("#currentDay");
-  var planInput = $("#input");
   var storedPlans = [];
 
   // getting current day
@@ -33,9 +32,13 @@ $(document).ready(function () {
       displayHour = i;
       ampm = "am";
     }
+    if (i === 0) {
+      displayHour = 12;
+      ampm = "am";
+    }
 
-    // populate timeBox with time
-    $("#time").text(displayHour + ampm);
+    // populate addspan with time
+    addSpan.text(displayHour + ampm);
 
     // create div for input area
     var inputarea = $("<div>").addClass("inputinfo col-md-6");
@@ -59,13 +62,14 @@ $(document).ready(function () {
 
   // event listener for save button click
   $(".saveBtn").on("click", function () {
+    var planInput = $("input");
     //function to save the input to localStorage
     var saveIndex = $(this).attr("save-index");
-    var fieldIndex = $(this).siblings("field-index");
-
-    // var plans = fieldIndex.val();
-    // localStorage.setItem("input", plans);
-    console.log(fieldIndex);
+    var fieldIndex = planInput;
+    var plans = fieldIndex.val();
+    localStorage.setItem("Task", plans);
+    storedPlans.push(plans);
+    console.log(storedPlans);
   });
 
   // //function to get input from localStorage and add it to text
