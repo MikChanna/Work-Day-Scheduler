@@ -9,6 +9,8 @@ $(document).ready(function () {
 
   currentDay.text(now);
 
+  initialize();
+
   for (var i = 0; i < 24; i++) {
     //create rows for every hour of the day
     var time = moment().hour(i).format("H");
@@ -61,28 +63,30 @@ $(document).ready(function () {
   }
 
   // event listener for save button click
-  $(".saveBtn").on("click", function () {
-    var planInput = $("input");
+  $(".saveBtn").on("click", function (event) {
+    event.preventDefault();
     //function to save the input to localStorage
     var saveIndex = $(this).attr("save-index");
-    var fieldIndex = planInput;
-    var plans = fieldIndex.val();
-    localStorage.setItem("Task", plans);
+    var fieldIndex = $("[field-index~=" + saveIndex + "]");
+    var plans = fieldIndex.val().trim();
+    localStorage.setItem("Task", JSON.stringify(storedPlans));
     storedPlans.push(plans);
     console.log(storedPlans);
+
+    renderPlans();
   });
 
-  // //function to get input from localStorage and add it to text
-  // function getInput() {
-  //   var savedInput = localStorage.getItem("input");
-  //   planInput(savedInput);
-  // }
-
-  // // will add each hour of the day to hourslot
-  // for (var i = 0; i < 24; i++) {
-  //   addData();
-
-  //   var hourslot = $("#hour");
-  //   hourslot.attr("data-time", time);
-  // }
+  function initialize() {
+    var lstoragePlans = JSON.parse(localStorage.getItem("plans"));
+    if (lstoragePlans !== null) {
+      storedPlans = lstoragePlans;
+    }
+  }
+  //function to get input from localStorage and add it to text
+  function renderPlans() {
+    var savedInput = localStorage.getItem("Task");
+    for (var i = 0; i < storedPlans.length; i++) {
+      var tasks = storedPlans[i];
+    }
+  }
 });
