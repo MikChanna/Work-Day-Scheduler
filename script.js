@@ -52,7 +52,7 @@ $(document).ready(function () {
     plannerRow.append(inputarea);
 
     //create div for save button
-    var save = $("<div>").addClass("save col-md-3");
+    var save = $("<div>").addClass("save col-md-2");
     var saveButton = $("<button>").addClass("saveBtn");
     saveButton.attr("save-index", i);
     saveButton.text("Save");
